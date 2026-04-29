@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Dardo · JMJ Seúl 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C0392B; --red-deep: #922B21;
+  --gold: #D4A017; --gold-light: #F7DC6F;
+  --ink: #1A1A2E; --cream: #FAF6EF;
+  --paper: #F5EFE0; --white: #FFFFFF;
+  --gray: #E8E0D0; --teal: #1D7874;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Noto Sans KR',sans-serif; background:var(--cream); color:var(--ink); overflow-x:hidden; }
+ 
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:999;
+  background:rgba(26,26,46,0.97); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 40px; height:64px;
+  border-bottom:1px solid rgba(212,160,23,0.2);
+}
+.nav-brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.nav-brand svg { width:36px; height:36px; }
+.nav-brand span { font-family:'Cinzel',serif; color:var(--gold); font-size:15px; letter-spacing:3px; }
+.nav-links { display:flex; gap:24px; list-style:none; }
+.nav-links a { color:rgba(255,255,255,0.65); text-decoration:none; font-size:12px; letter-spacing:1.5px; transition:color .3s; }
+.nav-links a:hover { color:var(--gold); }
+@media(max-width:768px){ .nav-links{display:none;} nav{padding:0 20px;} }
+ 
+/* HERO */
+.hero {
+  min-height:100vh; background:var(--ink);
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; padding:100px 20px 60px;
+}
+.hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse at 65% 35%, #0e1a3a 0%, #080812 70%); }
+.hero-lines { position:absolute; inset:0; pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(212,160,23,0.04) 59px,rgba(212,160,23,0.04) 60px); }
+ 
+/* Pétalos */
+.petal { position:absolute; border-radius:50% 0 50% 0; background:rgba(192,57,43,0.2); animation:fall linear infinite; }
+@keyframes fall { 0%{transform:translateY(-60px) rotate(0deg);opacity:1} 100%{transform:translateY(110vh) rotate(400deg);opacity:0} }
+ 
+/* Anillos decorativos */
+.ring { position:absolute; border-radius:50%; border:0.5px solid rgba(212,160,23,0.1); pointer-events:none; }
+ 
+.bg-kanji { position:absolute; right:-20px; top:50%; transform:translateY(-50%);
+  font-family:'Noto Serif JP',serif; font-size:380px; font-weight:700; line-height:1;
+  color:rgba(255,255,255,0.022); pointer-events:none; user-select:none; }
+.hero-col { position:absolute; left:28px; top:50%; transform:translateY(-50%);
+  writing-mode:vertical-rl; font-family:'Noto Serif JP',serif;
+  font-size:10px; letter-spacing:10px; color:rgba(212,160,23,0.18); pointer-events:none; }
+ 
+.hero-content { position:relative; z-index:2; max-width:900px; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:10px;
+  border:1px solid rgba(212,160,23,0.35); color:var(--gold);
+  font-size:11px; letter-spacing:4px; padding:7px 22px;
+  margin-bottom:32px; font-family:'Cinzel',serif;
+}
+.hero-badge::before,.hero-badge::after { content:'✦'; font-size:8px; }
+.hero-hangul { font-family:'Noto Serif JP',serif; font-size:13px; letter-spacing:10px;
+  color:rgba(212,160,23,0.4); margin-bottom:16px; display:block; }
+.hero-title { font-family:'Cinzel',serif; font-size:clamp(36px,6vw,74px);
+  font-weight:700; color:var(--white); line-height:1.05; margin-bottom:18px; }
+.hero-title .g { color:var(--gold); }
+.hero-sub { font-family:'Noto Serif JP',serif; font-size:clamp(14px,1.8vw,19px);
+  color:rgba(255,255,255,0.45); letter-spacing:5px; margin-bottom:36px; }
+.hero-lema { display:inline-block; background:rgba(212,160,23,0.07);
+  border:1px solid rgba(212,160,23,0.22); border-left:3px solid var(--gold);
+  padding:14px 28px; font-style:italic; font-size:15px; color:rgba(255,255,255,0.8);
+  margin-bottom:52px; max-width:560px; }
+ 
+.hero-events { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+.ep { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:16px 22px; min-width:180px; text-align:left; }
+.ep-label { font-size:9px; letter-spacing:3px; color:rgba(255,255,255,0.3); margin-bottom:6px; font-family:'Cinzel',serif; }
+.ep-date { font-size:18px; font-weight:700; color:var(--gold); font-family:'Cinzel',serif; margin-bottom:2px; }
+.ep-desc { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; }
+ 
+.scroll-hint { position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+  color:rgba(255,255,255,0.2); font-size:11px; letter-spacing:3px; animation:breathe 2.5s ease-in-out infinite; }
+@keyframes breathe { 0%,100%{opacity:.2} 50%{opacity:.6} }
+ 
+/* PAPA STRIP */
+.papa-strip { display:flex; align-items:stretch; overflow:hidden; min-height:460px; }
+.papa-photo { width:380px; min-width:260px; flex-shrink:0; position:relative; overflow:hidden; }
+.papa-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; filter:brightness(0.88) contrast(1.05); display:block; }
+.papa-photo::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(90deg, transparent 70%, rgba(26,26,46,1) 100%),
+             linear-gradient(0deg, rgba(26,26,46,0.4) 0%, transparent 40%);
+}
+.papa-photo-caption {
+  position:absolute; bottom:16px; left:16px; z-index:2;
+  font-size:10px; color:rgba(255,255,255,0.35); letter-spacing:1px;
+  font-family:'Cinzel',serif;
+}
+.papa-text { flex:1; background:var(--ink); padding:52px 52px 52px 44px; display:flex; flex-direction:column; justify-content:center; }
+.papa-text .ey { font-family:'Cinzel',serif; font-size:10px; letter-spacing:5px; color:rgba(212,160,23,0.6); margin-bottom:18px; }
+.papa-text h2 { font-family:'Cinzel',serif; font-size:clamp(20px,3vw,34px); color:var(--white); line-height:1.25; margin-bottom:20px; }
+.papa-text h2 span { color:var(--gold); }
+.papa-text p { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.9; max-width:500px; margin-bottom:28px; }
+.papa-facts { display:flex; gap:28px; flex-wrap:wrap; }
+.papa-fact .pf-label { font-size:9px; letter-spacing:3px; color:rgba(255,255,255,0.3); font-family:'Cinzel',serif; margin-bottom:4px; }
+.papa-fact .pf-val { font-size:13px; color:rgba(255,255,255,0.7); }
+.papa-fact .pf-val em { color:var(--gold); font-style:normal; }
+@media(max-width:768px){ .papa-strip{flex-direction:column;} .papa-photo{width:100%;min-height:280px;} .papa-photo::after{background:linear-gradient(0deg,rgba(26,26,46,1) 0%,transparent 50%);} .papa-text{padding:32px 24px;} }
+ 
+/* DIVISOR */
+.div-wrap { padding:48px 20px 0; }
+.divider { display:flex; align-items:center; gap:14px; margin:0 auto; max-width:440px; }
+.divider-line { flex:1; height:1px; background:var(--gold); opacity:.25; }
+.divider-sym { color:var(--gold); opacity:.55; font-size:14px; }
+ 
+/* SECCIONES */
+section { padding:80px 20px; }
+.container { max-width:1100px; margin:0 auto; }
+.ey { font-family:'Cinzel',serif; font-size:10px; letter-spacing:5px; color:var(--red); margin-bottom:12px; }
+.st { font-family:'Cinzel',serif; font-size:clamp(26px,4vw,44px); font-weight:700; line-height:1.2; margin-bottom:20px; }
+.st .g { color:var(--gold); }
+.sb { font-size:15px; line-height:1.9; color:#555; max-width:720px; }
+ 
+/* MADRID */
+.madrid { background:var(--paper); position:relative; overflow:hidden; }
+.madrid::before { content:'東京'; position:absolute; right:-10px; top:10px;
+  font-family:'Noto Serif JP',serif; font-size:200px; font-weight:700;
+  color:rgba(192,57,43,0.04); pointer-events:none; line-height:1; }
+.madrid-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+@media(max-width:768px){ .madrid-grid{grid-template-columns:1fr;} }
+ 
+.agenda-box { background:var(--white); border-top:3px solid var(--red); padding:28px; margin-top:28px; }
+.agenda-box h3 { font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; color:var(--red-deep); margin-bottom:18px; }
+.ag-list { list-style:none; }
+.ag-list li { display:flex; gap:14px; padding:11px 0; border-bottom:1px solid var(--gray); font-size:13px; color:#555; line-height:1.6; }
+.ag-list li:last-child { border-bottom:none; }
+.ag-date { min-width:62px; font-weight:700; color:var(--red); font-size:11px; font-family:'Cinzel',serif; padding-top:1px; flex-shrink:0; }
+ 
+.dark-box { background:var(--ink); padding:36px; color:var(--white); margin-top:56px; }
+.dark-box .ey { color:rgba(212,160,23,0.7); }
+.dark-box h3 { font-family:'Cinzel',serif; font-size:19px; margin-bottom:16px; line-height:1.3; }
+.dark-box p { font-size:14px; color:rgba(255,255,255,0.65); line-height:1.85; }
+.stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.1); padding-top:22px; }
+.sc .sc-label { font-size:9px; letter-spacing:2px; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.sc .sc-val { font-family:'Cinzel',serif; font-size:22px; color:var(--gold); }
+.sc .sc-note { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.palomeras-note { background:rgba(212,160,23,0.08); border:1px solid rgba(212,160,23,0.2); border-left:3px solid var(--gold); padding:14px 18px; margin-top:18px; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.8; }
+.btn-cta { display:block; margin-top:22px; background:var(--red); color:var(--white); padding:13px 24px; text-align:center; text-decoration:none; font-family:'Cinzel',serif; font-size:12px; letter-spacing:2px; border:none; cursor:pointer; transition:background .3s; }
+.btn-cta:hover { background:var(--red-deep); }
+.info-note { background:rgba(192,57,43,0.05); border:1px solid rgba(192,57,43,0.12); padding:14px 18px; margin-top:14px; font-size:12px; color:#777; line-height:1.8; }
+ 
+/* JMJ DARK */
+.jmj-sec { background:#0D0D1A; }
+.jmj-sec .ey { color:rgba(212,160,23,0.7); }
+.jmj-sec .st { color:var(--white); }
+.jmj-sec .sb { color:rgba(255,255,255,0.5); }
+ 
+.route-strip { display:flex; align-items:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:24px 32px; margin:36px 0; flex-wrap:wrap; gap:10px; justify-content:center; }
+.rn { text-align:center; flex:1; min-width:110px; }
+.rn-flag { font-size:34px; margin-bottom:8px; }
+.rn-label { font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:4px; }
+.rn-days { font-size:12px; color:rgba(255,255,255,0.45); }
+.ra { font-size:20px; color:rgba(212,160,23,0.25); padding:0 6px; align-self:center; }
+ 
+.jmj-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+@media(max-width:768px){ .jmj-grid{grid-template-columns:1fr;} }
+ 
+.itin-table { width:100%; border-collapse:collapse; font-size:13px; }
+.itin-table tr { border-bottom:1px solid rgba(255,255,255,0.05); }
+.itin-table td { padding:10px 8px; vertical-align:top; }
+.itin-table td:first-child { font-family:'Cinzel',serif; color:var(--gold); min-width:80px; font-size:11px; }
+.itin-table td:last-child { color:rgba(255,255,255,0.6); line-height:1.6; }
+.tag { display:inline-block; font-size:9px; letter-spacing:1px; padding:2px 7px; font-family:'Cinzel',serif; margin-left:5px; }
+.tag-jp { background:rgba(192,57,43,0.18); color:#e08070; }
+.tag-kr { background:rgba(29,120,116,0.18); color:#5bb5b0; }
+.tag-jmj { background:rgba(212,160,23,0.15); color:var(--gold); }
+ 
+.vol-box { background:linear-gradient(135deg,rgba(29,120,116,0.12),rgba(29,120,116,0.05)); border:1px solid rgba(29,120,116,0.28); border-left:3px solid var(--teal); padding:26px; margin-top:26px; }
+.vol-box h4 { font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; color:#5bb5b0; margin-bottom:12px; }
+.vol-box p { font-size:13px; color:rgba(255,255,255,0.6); line-height:1.85; }
+ 
+.timeline { position:relative; padding-left:26px; }
+.timeline::before { content:''; position:absolute; left:7px; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,var(--red),var(--gold),var(--teal)); }
+.tl-item { position:relative; margin-bottom:28px; }
+.tl-dot { position:absolute; left:-26px; top:6px; width:13px; height:13px; border-radius:50%; background:var(--ink); border:2px solid var(--red); }
+.tl-date { font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:4px; }
+.tl-title { font-family:'Cinzel',serif; font-size:15px; color:var(--white); margin-bottom:5px; }
+.tl-body { font-size:13px; color:rgba(255,255,255,0.5); line-height:1.75; }
+ 
+.lema-box { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); padding:24px; margin-top:24px; }
+.lema-box p.l-ey { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:rgba(212,160,23,0.6); margin-bottom:10px; }
+.lema-box p.l-text { font-size:16px; font-style:italic; color:var(--white); line-height:1.6; }
+.lema-box p.l-ref { font-size:12px; color:rgba(255,255,255,0.35); margin-top:6px; }
+ 
+/* COREA INFO */
+.corea-sec { background:var(--cream); }
+.corea-intro { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; margin-bottom:48px; }
+@media(max-width:768px){ .corea-intro{grid-template-columns:1fr;} }
+.corea-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; }
+.cstat { background:var(--white); border:1px solid var(--gray); border-top:2px solid var(--teal); padding:24px; text-align:center; }
+.cstat .ico { font-size:28px; margin-bottom:10px; }
+.cstat h4 { font-family:'Cinzel',serif; font-size:12px; letter-spacing:1px; color:var(--ink); margin-bottom:6px; }
+.cstat p { font-size:12px; color:#777; line-height:1.7; }
+.cstat .big { font-family:'Cinzel',serif; font-size:32px; font-weight:700; color:var(--teal); margin:6px 0 2px; }
+ 
+.jmj-datos-box { background:var(--ink); padding:32px; color:var(--white); }
+.jmj-datos-box .ey { color:rgba(212,160,23,0.65); }
+.jmj-datos-box h3 { font-family:'Cinzel',serif; font-size:17px; color:var(--white); margin-bottom:18px; }
+.jmj-datos-list { list-style:none; }
+.jmj-datos-list li { font-size:13px; color:rgba(255,255,255,0.65); padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; gap:10px; line-height:1.6; align-items:flex-start; }
+.jmj-datos-list li:last-child { border-bottom:none; }
+.jmj-datos-list li::before { content:'→'; color:var(--gold); flex-shrink:0; font-size:12px; margin-top:1px; }
+ 
+/* PRECIO */
+.precio-sec { background:var(--paper); }
+.precio-wrap { max-width:700px; margin:0 auto; }
+.price-card { background:var(--white); border:1px solid var(--gray); border-top:4px solid var(--gold); padding:44px; margin-top:40px; text-align:center; }
+.price-label { font-family:'Cinzel',serif; font-size:10px; letter-spacing:5px; color:#aaa; margin-bottom:10px; }
+.price-big { font-family:'Cinzel',serif; font-size:76px; font-weight:700; color:var(--ink); line-height:1; }
+.price-note { font-size:13px; color:#bbb; margin-bottom:8px; }
+.price-pending { font-size:12px; color:var(--red); margin-bottom:28px; font-style:italic; }
+.includes-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; text-align:left; margin-bottom:28px; }
+.inc { font-size:13px; color:#555; display:flex; gap:8px; align-items:flex-start; padding:5px 0; }
+.inc::before { content:'✦'; color:var(--gold); font-size:10px; flex-shrink:0; margin-top:2px; }
+ 
+.becas-box { background:var(--cream); border:1px solid var(--gray); border-left:3px solid var(--teal); padding:24px; margin-top:20px; text-align:left; }
+.becas-box h4 { font-family:'Cinzel',serif; font-size:12px; letter-spacing:2px; color:var(--teal); margin-bottom:12px; }
+.becas-box p { font-size:13px; color:#666; line-height:1.85; }
+.beca-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.beca-tag { background:rgba(29,120,116,0.09); color:var(--teal); font-size:10px; padding:4px 12px; border:1px solid rgba(29,120,116,0.22); font-family:'Cinzel',serif; letter-spacing:1px; }
+ 
+.cuotas { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--gray); margin-top:20px; }
+.cuota { background:var(--white); padding:18px; text-align:center; }
+.cuota .c-label { font-size:9px; letter-spacing:2px; color:#aaa; margin-bottom:5px; font-family:'Cinzel',serif; }
+.cuota .c-date { font-size:12px; font-weight:700; color:var(--ink); margin-bottom:3px; }
+.cuota .c-amount { font-family:'Cinzel',serif; font-size:20px; color:var(--red); }
+ 
+/* ORGANIZACIÓN */
+.org-sec { background:var(--white); }
+.org-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:44px; }
+.org-step { background:var(--cream); padding:24px; border-left:3px solid var(--teal); }
+.org-num { font-family:'Cinzel',serif; font-size:44px; font-weight:700; color:rgba(29,120,116,0.14); line-height:1; margin-bottom:10px; }
+.org-step h3 { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+.org-step p { font-size:12px; color:#777; line-height:1.75; }
+ 
+/* FAQ */
+.faq-sec { background:var(--paper); }
+.faq-list { max-width:820px; margin-top:40px; }
+details.faq { border-bottom:1px solid var(--gray); padding:18px 0; }
+details.faq summary { cursor:pointer; font-weight:700; font-size:14px; color:var(--ink); list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+details.faq summary::-webkit-details-marker { display:none; }
+details.faq summary::after { content:'+'; color:var(--red); font-size:22px; font-weight:300; flex-shrink:0; }
+details[open] summary::after { content:'−'; }
+details.faq p { font-size:13px; color:#666; line-height:1.85; padding-top:12px; }
+ 
+/* CTA */
+.cta-sec { background:var(--red); padding:80px 20px; text-align:center; }
+.cta-sec h2 { font-family:'Cinzel',serif; font-size:clamp(22px,4vw,42px); color:var(--white); margin-bottom:12px; }
+.cta-sec p { color:rgba(255,255,255,0.75); font-size:15px; margin-bottom:36px; }
+.contact-strip { display:flex; gap:36px; justify-content:center; flex-wrap:wrap; margin-bottom:36px; }
+.ci .c-label { font-size:9px; letter-spacing:3px; color:rgba(255,255,255,0.4); font-family:'Cinzel',serif; margin-bottom:4px; }
+.ci .c-val { font-size:19px; font-weight:700; color:var(--white); }
+.ci a { color:var(--white); text-decoration:none; }
+.ci a:hover { text-decoration:underline; }
+.btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.btn-fill { display:inline-block; background:var(--white); color:var(--red); padding:14px 40px; font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; text-decoration:none; font-weight:700; transition:.3s; }
+.btn-fill:hover { background:transparent; color:var(--white); border:2px solid var(--white); }
+.btn-out { display:inline-block; border:2px solid var(--white); color:var(--white); padding:14px 40px; font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; text-decoration:none; transition:.3s; }
+.btn-out:hover { background:var(--white); color:var(--red); }
+ 
+/* FOOTER */
+footer { background:#06060E; color:rgba(255,255,255,0.3); text-align:center; padding:44px 20px; font-size:12px; line-height:2; }
+footer .f-logo { font-family:'Cinzel',serif; font-size:18px; color:rgba(212,160,23,0.45); letter-spacing:4px; margin-bottom:12px; }
+footer a { color:rgba(255,255,255,0.3); text-decoration:none; }
+footer a:hover { color:var(--gold); }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="37" stroke="#D4A017" stroke-width="1.4" fill="none"/>
+      <line x1="13" y1="40" x2="67" y2="40" stroke="#D4A017" stroke-width="1.5"/>
+      <polygon points="67,40 58,35 58,45" fill="#D4A017"/>
+      <polygon points="13,40 22,34 20,40" fill="#C0392B"/>
+      <polygon points="13,40 22,46 20,40" fill="#C0392B"/>
+      <line x1="40" y1="9" x2="40" y2="21" stroke="#D4A017" stroke-width="1.2"/>
+      <line x1="34" y1="14.5" x2="46" y2="14.5" stroke="#D4A017" stroke-width="1.2"/>
+      <circle cx="40" cy="40" r="3.5" fill="#D4A017"/>
+    </svg>
+    <span>CLUB DARDO</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#madrid">Papa en España</a></li>
+    <li><a href="#jmj">JMJ Seúl 2027</a></li>
+    <li><a href="#corea">Destino</a></li>
+    <li><a href="#precio">Precio</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="petal" style="left:7%;width:5px;height:5px;animation-duration:9s;animation-delay:0s;"></div>
+  <div class="petal" style="left:21%;width:4px;height:4px;animation-duration:12s;animation-delay:2s;"></div>
+  <div class="petal" style="left:42%;width:6px;height:6px;animation-duration:8s;animation-delay:4s;"></div>
+  <div class="petal" style="left:63%;width:4px;height:4px;animation-duration:14s;animation-delay:1s;"></div>
+  <div class="petal" style="left:80%;width:5px;height:5px;animation-duration:10s;animation-delay:3s;"></div>
+  <div class="petal" style="left:92%;width:3px;height:3px;animation-duration:7s;animation-delay:5.5s;"></div>
+  <div class="ring" style="width:680px;height:680px;top:-260px;right:-260px;"></div>
+  <div class="ring" style="width:440px;height:440px;top:-140px;right:-140px;border-color:rgba(192,57,43,0.1)"></div>
+  <div class="ring" style="width:780px;height:780px;bottom:-380px;left:-380px;border-color:rgba(212,160,23,0.06)"></div>
+  <div class="bg-kanji">縁</div>
+  <div class="hero-lines"></div>
+  <div class="hero-col">巡礼の旅　JMJ　ソウル　2027年　信仰の道　クラブダルド</div>
+ 
+  <div class="hero-content">
+    <div class="hero-badge">CLUB DARDO &nbsp;·&nbsp; PEREGRINACIÓN 2027</div>
+    <span class="hero-hangul">환영합니다 &nbsp;·&nbsp; ようこそ &nbsp;·&nbsp; BIENVENIDOS</span>
+    <h1 class="hero-title">Hasta los confines<br>de la <span class="g">tierra</span></h1>
+    <p class="hero-sub">JMJ Seúl 2027 &nbsp;·&nbsp; Japón &amp; Corea del Sur</p>
+    <div class="hero-lema">
+      «¡Tened valor! Yo he vencido al mundo» &mdash; Jn 16,33
+    </div>
+    <div class="hero-events">
+      <div class="ep">
+        <div class="ep-label">EVENTO 1</div>
+        <div class="ep-date">JUN 2026</div>
+        <div class="ep-desc">El Papa viene a España<br>Viernes a domingo · Madrid</div>
+      </div>
+      <div class="ep">
+        <div class="ep-label">GRAN PEREGRINACIÓN</div>
+        <div class="ep-date">JUL–AGO 2027</div>
+        <div class="ep-desc">Japón &amp; JMJ Seúl<br>3–8 agosto con el Papa</div>
+      </div>
+      <div class="ep">
+        <div class="ep-label">PRECIO DESDE</div>
+        <div class="ep-date">1.850€</div>
+        <div class="ep-desc">Becas disponibles<br>vía convivencias y campos</div>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">▾ &nbsp; DESCUBRE EL VIAJE &nbsp; ▾</p>
+</section>
+ 
+<!-- PAPA FOTO STRIP -->
+<div class="papa-strip">
+  <div class="papa-photo">
+    <img src="https://media.cnn.com/api/v1/images/stellar/prod/leo-1.jpg?c=16x9&q=h_833,w_1480,c_fill"
+         alt="Papa León XIV saludando desde el balcón de San Pedro el día de su elección, 8 mayo 2025"
+         loading="lazy">
+    <div class="papa-photo-caption">© Vatican Media · 8 mayo 2025</div>
+  </div>
+  <div class="papa-text">
+    <p class="ey">Su Santidad</p>
+    <h2>Papa <span>León XIV</span><br>Robert Francis Prevost</h2>
+    <p>
+      Elegido el <strong style="color:rgba(255,255,255,0.85);">8 de mayo de 2025</strong>, León XIV —agustino, nacido en Chicago— 
+      es el primer papa americano de la historia. Hombre cercano y de fe profunda, heredero del espíritu de San Agustín. 
+      Confirmó personalmente las fechas de la JMJ Seúl al término del Jubileo de los Jóvenes en Roma, el 3 de agosto de 2025: 
+      <em style="color:rgba(255,255,255,0.8);">"Los jóvenes de todo el mundo se volverán a encontrar junto al Sucesor de Pedro en Seúl, del 3 al 8 de agosto de 2027. ¡Cita en Seúl!"</em>
+    </p>
+    <div class="papa-facts">
+      <div class="papa-fact"><div class="pf-label">ELEGIDO</div><div class="pf-val"><em>8 mayo 2025</em></div></div>
+      <div class="papa-fact"><div class="pf-label">ORDEN</div><div class="pf-val">Agustinos (OSA)</div></div>
+      <div class="papa-fact"><div class="pf-label">LEMA</div><div class="pf-val"><em>In illo uno unum</em></div></div>
+      <div class="papa-fact"><div class="pf-label">267.º SUCESOR DE PEDRO</div><div class="pf-val">Primer papa americano</div></div>
+    </div>
+  </div>
+</div>
+ 
+<div class="div-wrap" style="background:var(--paper)">
+  <div class="divider"><div class="divider-line"></div><div class="divider-sym">✦</div><div class="divider-sym">⛩</div><div class="divider-sym">✦</div><div class="divider-line"></div></div>
+</div>
+ 
+<!-- MADRID -->
+<section class="madrid" id="madrid">
+  <div class="container">
+    <div class="madrid-grid">
+      <div>
+        <p class="ey">Viernes 6 – Domingo 8 Junio 2026 · Madrid</p>
+        <h2 class="st">El Papa viene<br>a <span class="g">vernos</span></h2>
+        <p class="sb">
+          Antes de que nosotros viajemos hasta el fin del mundo, <strong>el Papa León XIV visita España del 6 al 12 de junio de 2026</strong>. La primera visita papal en 15 años. El Club Dardo se moviliza para vivirlo juntos: salimos el <strong>viernes 6</strong>, dos noches en el <strong>Club Palomeras</strong>, y regresamos el <strong>domingo 8</strong> por la tarde.
+        </p>
+        <div class="agenda-box">
+          <h3>Agenda Papa en España</h3>
+          <ul class="ag-list">
+            <li><span class="ag-date">VIE 6 JUN</span><span>Llegada a Madrid · Gran <strong>Vigilia con jóvenes</strong> en el Paseo de la Castellana</span></li>
+            <li><span class="ag-date">SÁB 7 JUN</span><span><strong>Misa de Corpus Christi</strong> en la Plaza de Cibeles · Procesión eucarística</span></li>
+            <li><span class="ag-date">DOM 8 JUN</span><span>Bernabéu · Almudena · <strong>Congreso de los Diputados</strong> · Regreso del Club Dardo</span></li>
+            <li><span class="ag-date">9–10 JUN</span><span><strong>Barcelona</strong>: Sagrada Familia · Montserrat (ya sin el grupo)</span></li>
+            <li><span class="ag-date">11–12 JUN</span><span><strong>Canarias</strong>: Gran Canaria · Santa Cruz de Tenerife. Clausura</span></li>
+          </ul>
+        </div>
+      </div>
+ 
+      <div>
+        <div class="dark-box">
+          <p class="ey">Plan Club Dardo · Madrid 2026</p>
+          <h3>Viernes a Domingo<br>en el Club Palomeras</h3>
+          <p>
+            Salimos el <strong style="color:rgba(255,255,255,0.88)">viernes 6 de junio</strong> en autobús por la tarde. Esa noche, la gran <strong style="color:rgba(255,255,255,0.88)">Vigilia en la Castellana</strong>. 
+            El sábado 7, <strong style="color:rgba(255,255,255,0.88)">Misa en Cibeles</strong>. Dormimos las dos noches en el 
+            <strong style="color:rgba(255,255,255,0.88)">Club Palomeras</strong> (Madrid), instalaciones amplias con literas, duchas y comedor, perfectas para grupos. 
+            El <strong style="color:rgba(255,255,255,0.88)">domingo 8 regresamos</strong> por la tarde.
+          </p>
+          <div class="palomeras-note">
+            🏠 <strong>Club Palomeras, Madrid</strong> — Alojamiento colectivo en red parroquial. Ambiente joven, céntrico y accesible. El club gestiona la reserva colectiva.
+          </div>
+          <div class="stat-row">
+            <div class="sc"><div class="sc-label">SOCIOS</div><div class="sc-val">100€</div><div class="sc-note">precio estimado</div></div>
+            <div class="sc"><div class="sc-label">NO SOCIOS</div><div class="sc-val">125€</div><div class="sc-note">precio estimado</div></div>
+            <div class="sc"><div class="sc-label">PLAZAS</div><div class="sc-val">50</div><div class="sc-note">orden inscripción</div></div>
+          </div>
+        </div>
+        <a href="#contacto" class="btn-cta">Apuntarme al viaje de Madrid →</a>
+        <div class="info-note">Inscripción oficial gratuita en <em>conelpapa.es</em> — el Club Dardo gestiona la inscripción colectiva del grupo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="div-wrap" style="background:var(--cream)">
+  <div class="divider"><div class="divider-line"></div><div class="divider-sym">✦</div><div class="divider-sym">🌸</div><div class="divider-sym">✦</div><div class="divider-line"></div></div>
+</div>
+ 
+<!-- JMJ 2027 -->
+<section class="jmj-sec" id="jmj" style="padding-top:80px;">
+  <div class="container">
+    <p class="ey">Julio–Agosto 2027 · Japón &amp; Corea del Sur</p>
+    <h2 class="st" style="color:var(--white);">La gran peregrinación:<br><span class="g">6 días en Japón · JMJ en Seúl</span></h2>
+    <p class="sb">
+      El Club Dardo propone una ruta que va mucho más allá de los actos centrales: primero <strong style="color:rgba(255,255,255,0.8)">seis noches en Japón</strong> —integrados en una red internacional de voluntariado que nos permite reducir costes significativamente y vivir una inmersión real— y después nos trasladamos a <strong style="color:rgba(255,255,255,0.8)">Seúl para la JMJ</strong> junto al Papa.
+    </p>
+ 
+    <div class="route-strip">
+      <div class="rn"><div class="rn-flag">🇪🇸</div><div class="rn-label">Salida</div><div class="rn-days">Madrid · 28 Jul</div></div>
+      <div class="ra">→</div>
+      <div class="rn"><div class="rn-flag">🇯🇵</div><div class="rn-label">Japón</div><div class="rn-days">6 noches · Voluntariado</div></div>
+      <div class="ra">→</div>
+      <div class="rn"><div class="rn-flag">🇰🇷</div><div class="rn-label">JMJ Seúl</div><div class="rn-days">3–8 Agosto 2027</div></div>
+      <div class="ra">→</div>
+      <div class="rn"><div class="rn-flag">🇪🇸</div><div class="rn-label">Regreso</div><div class="rn-days">Madrid · ~10 Ago</div></div>
+    </div>
+ 
+    <div class="jmj-grid">
+      <div>
+        <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--gold);margin-bottom:20px;">Itinerario día a día</h3>
+        <table class="itin-table">
+          <tr><td>28 Jul</td><td>Vuelo Madrid → Tokio (vía Doha / Helsinki) <span class="tag tag-jp">JAPÓN</span></td></tr>
+          <tr><td>29–30 Jul</td><td>Tokio: llegada, acogida en red voluntariado, Shibuya, Asakusa <span class="tag tag-jp">JAPÓN</span></td></tr>
+          <tr><td>31 Jul–1 Ago</td><td>Proyecto voluntariado con comunidad local (según sede asignada) <span class="tag tag-jp">JAPÓN</span></td></tr>
+          <tr><td>2 Ago</td><td>Día libre Japón: Kioto o Nara · Vuelo Tokio → Seúl por la tarde <span class="tag tag-kr">COREA</span></td></tr>
+          <tr><td>3 Ago</td><td>Misa de apertura JMJ con el Papa León XIV <span class="tag tag-jmj">JMJ</span></td></tr>
+          <tr><td>4–5 Ago</td><td>Catequesis en español · Festival juvenil · Vía Crucis <span class="tag tag-jmj">JMJ</span></td></tr>
+          <tr><td>6 Ago</td><td>Gran Vigilia nocturna con el Papa <span class="tag tag-jmj">JMJ</span></td></tr>
+          <tr><td>7 Ago</td><td>Misa de clausura y envío papal <span class="tag tag-jmj">JMJ</span></td></tr>
+          <tr><td>8–9 Ago</td><td>Día libre Seúl: Gyeongbokgung, Namsan, K-food <span class="tag tag-kr">COREA</span></td></tr>
+          <tr><td>10 Ago</td><td>Vuelo regreso Seúl → Madrid</td></tr>
+        </table>
+        <div class="vol-box">
+          <h4>🌿 Red Internacional de Voluntariado · Japón</h4>
+          <p>
+            El Club Dardo participa en una <strong>red internacional de acogida solidaria</strong> con presencia en varias ciudades japonesas. 
+            Los peregrinos colaboran unas horas al día en proyectos comunitarios —educación, apoyo a personas mayores, sostenibilidad— a cambio de alojamiento y manutención. 
+            Esta alianza nos permite <strong>reducir considerablemente los costes del tramo japonés</strong> y vivir una experiencia de servicio que encarna el espíritu más genuino de la JMJ: salir al encuentro del otro.
+          </p>
+        </div>
+      </div>
+ 
+      <div>
+        <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--gold);margin-bottom:20px;">Programa JMJ oficial</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <p class="tl-date">LUNES 3 AGO 2027</p>
+            <h4 class="tl-title">Misa de apertura</h4>
+            <p class="tl-body">El Papa León XIV abre la JMJ. Primera vez que la JMJ se celebra en una nación dividida y en un país no mayoritariamente cristiano.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="border-color:var(--gold)"></div>
+            <p class="tl-date">4–5 AGO 2027</p>
+            <h4 class="tl-title">Catequesis · Vía Crucis · Festival</h4>
+            <p class="tl-body">Catequesis en español con obispos. Festival de músicas del mundo. Vía Crucis multitudinario por Seúl.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="border-color:var(--teal)"></div>
+            <p class="tl-date">JUEVES 6 AGO 2027</p>
+            <h4 class="tl-title">Gran Vigilia nocturna</h4>
+            <p class="tl-body">Millones de jóvenes bajo el cielo coreano junto al Papa. El momento más emotivo de cada JMJ.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="border-color:var(--gold)"></div>
+            <p class="tl-date">VIERNES 7 AGO 2027</p>
+            <h4 class="tl-title">Misa de clausura y envío</h4>
+            <p class="tl-body">El Papa nos envía al mundo. Anuncio de la sede de la próxima JMJ. La segunda JMJ en Asia, 32 años después de Manila 1995.</p>
+          </div>
+        </div>
+        <div class="lema-box">
+          <p class="l-ey">LEMA JMJ SEÚL 2027</p>
+          <p class="l-text">«¡Tened valor! Yo he vencido al mundo»</p>
+          <p class="l-ref">Juan 16,33 &nbsp;·&nbsp; Anunciado por el Cardenal Farrell, 24 sep 2024</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- COREA INFO -->
+<section class="corea-sec" id="corea">
+  <div class="container">
+    <p class="ey">Por qué Seúl · Por qué 2027</p>
+    <h2 class="st">Seúl, la capital del <span class="g">K-Universe</span></h2>
+ 
+    <div class="corea-intro">
+      <div>
+        <p class="sb">
+          Una ciudad que mezcla modernidad futurista y tradición milenaria. Templos confucianos junto a rascacielos de cristal, street food increíble y la cultura hallyu que ha conquistado el mundo. Y una Iglesia católica joven, viva y con raíces de mártires.
+        </p>
+        <div class="jmj-datos-box" style="margin-top:24px;">
+          <p class="ey" style="color:rgba(212,160,23,0.65);">Por qué Seúl para la JMJ</p>
+          <h3>Datos e historia</h3>
+          <ul class="jmj-datos-list">
+            <li><strong>Anuncio original:</strong> El Papa Francisco anunció Seúl como sede en la JMJ Lisboa 2023 (6 agosto 2023)</li>
+            <li><strong>Confirmación de fechas:</strong> León XIV confirmó el 3–8 agosto 2027 al término del Jubileo de los Jóvenes en Roma (3 agosto 2025)</li>
+            <li><strong>Primera JMJ en Corea:</strong> Segunda en Asia tras la histórica Manila 1995, con casi 4 millones de asistentes</li>
+            <li><strong>Primera en nación dividida:</strong> La Iglesia lo vive como señal de esperanza por la reunificación coreana</li>
+            <li><strong>Santos patronos (anunciados 26 abr 2026):</strong> San Juan Pablo II, San Andrés Kim Taegon, Carlo Acutis y otros mártires coreanos</li>
+            <li><strong>Logo:</strong> Diseñado por un investigador de 26 años de la Universidad Hongik. La cruz + el carácter coreano "ieung". Los trazos forman la palabra Seúl en coreano y las siglas WYD</li>
+            <li><strong>Presentación oficial:</strong> 27 octubre 2025 en Seúl, presidida por Mons. Paul Kyung-sang Lee, coordinador general</li>
+            <li><strong>Inicio preparativos locales:</strong> Cruz de la JMJ entregada de Lisboa a Seúl el 24 noviembre 2024 (Cristo Rey)</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="corea-stats">
+          <div class="cstat">
+            <div class="ico">⛪</div>
+            <h4>Católicos en Corea</h4>
+            <div class="big">11,3%</div>
+            <p>5,9 millones de fieles en 16 diócesis. Un aumento del 50% en los últimos 20 años</p>
+          </div>
+          <div class="cstat">
+            <div class="ico">🕯</div>
+            <h4>Fe nacida del pueblo</h4>
+            <div class="big">1784</div>
+            <p>El catolicismo llegó a Corea sin misioneros: fueron los propios coreanos quienes lo abrazaron desde China</p>
+          </div>
+          <div class="cstat">
+            <div class="ico">✝</div>
+            <h4>Mártires coreanos</h4>
+            <div class="big">103</div>
+            <p>Canonizados por Juan Pablo II en 1984. San Andrés Kim Taegon, primer sacerdote coreano, patrono de la JMJ 2027</p>
+          </div>
+          <div class="cstat">
+            <div class="ico">🌱</div>
+            <h4>Vocaciones</h4>
+            <div class="big">+1.000</div>
+            <p>Sacerdotes ordenados en la Arquidiócesis de Seúl. La Iglesia coreana vive un renacimiento vocacional notable</p>
+          </div>
+          <div class="cstat">
+            <div class="ico">🌏</div>
+            <h4>Hallyu · Ola Coreana</h4>
+            <div class="big">K-Pop</div>
+            <p>BTS, Blackpink, K-dramas, K-food... Seúl es el epicentro de la cultura popular global del siglo XXI</p>
+          </div>
+          <div class="cstat">
+            <div class="ico">🍜</div>
+            <h4>Gastronomía</h4>
+            <div class="big">K-Food</div>
+            <p>Bibimbap, bulgogi, tteokbokki, samgyeopsal, kimchi. Una experiencia culinaria única e irrepetible</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PRECIO -->
+<section class="precio-sec" id="precio">
+  <div class="container precio-wrap">
+    <p class="ey">Transparencia total</p>
+    <h2 class="st">Un precio para todos,<br>con opciones de <span class="g">beca</span></h2>
+    <p class="sb">
+      En el Club Dardo creemos que ningún joven debe quedarse sin vivir la JMJ por motivos económicos. Precio único claro, sin sorpresas, y un programa de becas real ganado a lo largo del curso.
+    </p>
+ 
+    <div class="price-card">
+      <div class="price-label">PRECIO ESTÁNDAR POR PERSONA · TODO INCLUIDO</div>
+      <div class="price-big">1.850€</div>
+      <div class="price-note">pago fraccionado disponible</div>
+      <div class="price-pending">Precio orientativo — sujeto a posibles ajustes según número de participantes y cotización de vuelos</div>
+      <div class="includes-grid">
+        <div class="inc">Vuelo ida y vuelta Madrid–Tokio–Seúl–Madrid</div>
+        <div class="inc">6 noches Japón (red voluntariado: aloj. + comidas)</div>
+        <div class="inc">3–4 noches Seúl (alojamiento JMJ)</div>
+        <div class="inc">Inscripción oficial JMJ gestionada</div>
+        <div class="inc">Traslados aeropuerto en ambos países</div>
+        <div class="inc">Seguro de viaje completo</div>
+        <div class="inc">Guía del Club Dardo todo el recorrido</div>
+        <div class="inc">SIM card con datos para el viaje</div>
+        <div class="inc">Desayunos incluidos en Seúl</div>
+        <div class="inc">WhatsApp de coordinación 24/7</div>
+      </div>
+ 
+      <div class="becas-box">
+        <h4>Becas · Acceso para todos</h4>
+        <p>
+          El Club Dardo dispone de un fondo de becas parciales para quienes no puedan asumir el precio íntegro. 
+          Estas ayudas no se piden: se <strong>ganan participando</strong> activamente en las actividades del club a lo largo de este tiempo previo. 
+          Cuanto más te impliques, más posibilidades de acceder a una beca. Consúltalo con el coordinador.
+        </p>
+        <div class="beca-tags">
+          <span class="beca-tag">Convivencias de curso</span>
+          <span class="beca-tag">Campos de trabajo</span>
+          <span class="beca-tag">Voluntariado local</span>
+          <span class="beca-tag">Beca solidaria</span>
+        </div>
+      </div>
+ 
+      <div class="cuotas">
+        <div class="cuota"><div class="c-label">RESERVA · ENE 2027</div><div class="c-date">Enero 2027</div><div class="c-amount">300€</div></div>
+        <div class="cuota"><div class="c-label">50% RESTANTE</div><div class="c-date">Marzo 2027</div><div class="c-amount">775€</div></div>
+        <div class="cuota"><div class="c-label">LIQUIDACIÓN</div><div class="c-date">Mayo 2027</div><div class="c-amount">775€</div></div>
+      </div>
+    </div>
+ 
+    <div style="background:rgba(192,57,43,0.05);border:1px solid rgba(192,57,43,0.12);padding:18px 22px;margin-top:16px;">
+      <p style="font-size:13px;color:#777;line-height:1.8;"><strong style="color:var(--red)">Nota:</strong> El precio es orientativo y se confirmará al contratar el vuelo grupal (cuantas más personas, más barato). Los 6 días en Japón con la red de voluntariado reducen costes reales sin coste adicional. El viaje a Madrid (junio 2026) es independiente y se gestiona por separado.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ORGANIZACIÓN -->
+<section class="org-sec" id="organizacion">
+  <div class="container">
+    <p class="ey">Cómo nos organizamos</p>
+    <h2 class="st">El Club Dardo lo tiene<br><span class="g">todo pensado</span></h2>
+    <p class="sb">Llevamos años organizando viajes en grupo. Para la JMJ 2027 hemos trazado un camino claro desde hoy hasta el aeropuerto.</p>
+    <div class="org-grid">
+      <div class="org-step">
+        <div class="org-num">01</div>
+        <h3>Pre-inscripción (Ya)</h3>
+        <p>Escríbenos para registrar tu interés. Sin pago, sin compromiso. Nos ayuda a calcular plazas y negociar vuelos.</p>
+      </div>
+      <div class="org-step">
+        <div class="org-num">02</div>
+        <h3>Convivencias y campos (Curso 2025–26)</h3>
+        <p>Actividades del club a lo largo del curso. Participar es el camino para acceder a las becas parciales del viaje.</p>
+      </div>
+      <div class="org-step">
+        <div class="org-num">03</div>
+        <h3>Reunión informativa (Sep 2026)</h3>
+        <p>Presentamos el itinerario definitivo, precio confirmado y novedades. Respuestas a todas las dudas.</p>
+      </div>
+      <div class="org-step">
+        <div class="org-num">04</div>
+        <h3>Reserva oficial (Oct 2026)</h3>
+        <p>Pago de 300€ que confirma tu plaza. Iniciamos trámites con la agencia de viajes colaboradora.</p>
+      </div>
+      <div class="org-step">
+        <div class="org-num">05</div>
+        <h3>Preparación (2026–2027)</h3>
+        <p>Encuentros mensuales: historia de Japón y Corea, japonés y coreano básico, catequesis JMJ, convivencias.</p>
+      </div>
+      <div class="org-step">
+        <div class="org-num">06</div>
+        <h3>¡Nos vamos! (Jul 2027)</h3>
+        <p>Salida en grupo desde Madrid con guía-acompañante del Club Dardo durante todo el recorrido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FAQ -->
+<section class="faq-sec" id="faq">
+  <div class="container">
+    <p class="ey">Preguntas frecuentes</p>
+    <h2 class="st">¿Tienes dudas?</h2>
+    <div class="faq-list">
+      <details class="faq">
+        <summary>¿Necesito visado para Japón o Corea del Sur?</summary>
+        <p>Los ciudadanos españoles y de la UE no necesitan visado para Japón (hasta 90 días) ni para Corea del Sur (hasta 90 días). Basta con el pasaporte en vigor. Comprueba que no caduque antes de febrero de 2028. Nota: España estaba exenta de K-ETA hasta 31/12/2025 — confirmar estado actualizado antes de emitir billetes.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Cómo funciona exactamente el voluntariado en Japón?</summary>
+        <p>Participamos en una red internacional de acogida solidaria con presencia en varias ciudades japonesas. Los participantes colaboran unas horas al día en actividades comunitarias (talleres, apoyo a personas mayores, cuidado del entorno...) a cambio de alojamiento y comidas. No se requiere experiencia ni conocimiento del japonés, solo buena disposición y respeto a la comunidad.</p>
+      </details>
+      <details class="faq">
+        <summary>¿El viaje a Madrid (junio 2026) y el de Seúl (2027) son independientes?</summary>
+        <p>Sí, completamente independientes. El fin de semana en Madrid (viernes a domingo, ~100/125€) es una salida puntual. El viaje a Japón y Corea (1.850€) es la peregrinación grande de 2027. Puedes ir a uno, al otro o a los dos. No es requisito ir a Madrid para poder ir a la JMJ.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Cómo se consigue una beca del Club Dardo?</summary>
+        <p>Las becas se asignan según la participación activa durante el curso: asistencia a convivencias, campos de trabajo y actividades del club. No son automáticas; hay que solicitarlas y justificar la necesidad económica. Cuanto antes te acerques al coordinador, más opciones tendrás. El fondo es limitado.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Quién puede venir? ¿Solo jóvenes?</summary>
+        <p>La JMJ oficial está pensada para jóvenes de 16 a 35 años, pero el Club Dardo tiene plazas para acompañantes adultos (catequistas, animadores). Los menores de 18 años necesitan autorización firmada de los padres y viajan integrados en el grupo. Nadie viaja solo.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Qué pasa si el precio sube o baja?</summary>
+        <p>El precio de 1.850€ es orientativo hasta confirmar el vuelo grupal con la agencia. Cuantas más personas se apunten, más posibilidades de reducirlo. Si el precio final difiere, se comunicará antes del pago de la reserva oficial (octubre 2026) y cada participante podrá confirmar o cancelar sin penalización.</p>
+      </details>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<section class="cta-sec" id="contacto">
+  <div class="container" style="max-width:680px;">
+    <svg viewBox="0 0 80 80" fill="none" style="width:52px;height:52px;margin:0 auto 20px;display:block;opacity:.65;">
+      <circle cx="40" cy="40" r="37" stroke="rgba(255,255,255,0.4)" stroke-width="1.4" fill="none"/>
+      <line x1="13" y1="40" x2="67" y2="40" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+      <polygon points="67,40 58,35 58,45" fill="rgba(255,255,255,0.85)"/>
+      <polygon points="13,40 22,34 20,40" fill="rgba(255,255,255,0.55)"/>
+      <polygon points="13,40 22,46 20,40" fill="rgba(255,255,255,0.55)"/>
+      <line x1="40" y1="9" x2="40" y2="21" stroke="rgba(255,255,255,0.55)" stroke-width="1.2"/>
+      <line x1="34" y1="14.5" x2="46" y2="14.5" stroke="rgba(255,255,255,0.55)" stroke-width="1.2"/>
+      <circle cx="40" cy="40" r="3.5" fill="rgba(255,255,255,0.85)"/>
+    </svg>
+    <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:rgba(255,255,255,0.4);margin-bottom:14px;">CLUB DARDO</p>
+    <h2>¿Te apuntas?<br>Escríbenos ahora</h2>
+    <p>Pre-inscripción sin compromiso de pago. Te reservamos el sitio en el grupo y te informamos de todo.</p>
+    <div class="contact-strip">
+      <div class="ci">
+        <div class="c-label">CORREO</div>
+        <div class="c-val"><a href="mailto:clubdardo@dardo.org">clubdardo@dardo.org</a></div>
+      </div>
+      <div class="ci">
+        <div class="c-label">TELÉFONO · WHATSAPP</div>
+        <div class="c-val"><a href="tel:+34633266994">+34 633 266 994</a></div>
+      </div>
+    </div>
+    <div class="btns">
+      <a href="mailto:clubdardo@dardo.org?subject=Pre-inscripción JMJ Seúl 2027" class="btn-fill">Apuntarme a la JMJ 2027</a>
+      <a href="mailto:clubdardo@dardo.org?subject=Viaje Papa Madrid Junio 2026" class="btn-out">Viaje Papa · Madrid Junio 2026</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">CLUB DARDO</div>
+  <p>Papa León XIV en España &nbsp;·&nbsp; <a href="#madrid">6–12 junio 2026</a> &nbsp;&nbsp;|&nbsp;&nbsp; JMJ Seúl &nbsp;·&nbsp; <a href="#jmj">3–8 agosto 2027</a></p>
+  <p style="margin-top:8px;"><a href="mailto:clubdardo@dardo.org">clubdardo@dardo.org</a> &nbsp;·&nbsp; <a href="tel:+34633266994">+34 633 266 994</a></p>
+  <p style="margin-top:16px;font-size:11px;opacity:.4;max-width:680px;margin-left:auto;margin-right:auto;">
+    Información sujeta a confirmación definitiva. Precios orientativos hasta contratación de vuelos. Web del Club Dardo — no oficial del Vaticano ni de la organización JMJ.<br>
+    Fuentes: Vatican News · ACI Prensa · Wikipedia JMJ 2027 · laityfamilylife.va · conelpapa.es
+  </p>
+</footer>
+ 
+</body>
+</html>
