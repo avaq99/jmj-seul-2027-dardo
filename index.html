@@ -44,11 +44,9 @@ nav {
 .hero-lines { position:absolute; inset:0; pointer-events:none;
   background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(212,160,23,0.04) 59px,rgba(212,160,23,0.04) 60px); }
  
-/* Pétalos */
 .petal { position:absolute; border-radius:50% 0 50% 0; background:rgba(192,57,43,0.2); animation:fall linear infinite; }
 @keyframes fall { 0%{transform:translateY(-60px) rotate(0deg);opacity:1} 100%{transform:translateY(110vh) rotate(400deg);opacity:0} }
  
-/* Anillos decorativos */
 .ring { position:absolute; border-radius:50%; border:0.5px solid rgba(212,160,23,0.1); pointer-events:none; }
  
 .bg-kanji { position:absolute; right:-20px; top:50%; transform:translateY(-50%);
@@ -180,6 +178,8 @@ section { padding:80px 20px; }
 .tag-jp { background:rgba(192,57,43,0.18); color:#e08070; }
 .tag-kr { background:rgba(29,120,116,0.18); color:#5bb5b0; }
 .tag-jmj { background:rgba(212,160,23,0.15); color:var(--gold); }
+.tag-nag { background:rgba(192,57,43,0.28); color:#f5a090; }
+.tag-ferry { background:rgba(100,100,200,0.2); color:#a0b0f5; }
  
 .vol-box { background:linear-gradient(135deg,rgba(29,120,116,0.12),rgba(29,120,116,0.05)); border:1px solid rgba(29,120,116,0.28); border-left:3px solid var(--teal); padding:26px; margin-top:26px; }
 .vol-box h4 { font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; color:#5bb5b0; margin-bottom:12px; }
@@ -197,6 +197,44 @@ section { padding:80px 20px; }
 .lema-box p.l-ey { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:rgba(212,160,23,0.6); margin-bottom:10px; }
 .lema-box p.l-text { font-size:16px; font-style:italic; color:var(--white); line-height:1.6; }
 .lema-box p.l-ref { font-size:12px; color:rgba(255,255,255,0.35); margin-top:6px; }
+ 
+/* NAGASAKI SECTION */
+.nagasaki-sec { background:#0a0a18; border-top:1px solid rgba(192,57,43,0.2); }
+.nagasaki-sec .ey { color:rgba(192,57,43,0.8); }
+.nagasaki-grid { display:grid; grid-template-columns:1fr 1fr; gap:52px; margin-top:40px; align-items:start; }
+@media(max-width:768px){ .nagasaki-grid{grid-template-columns:1fr;} }
+.nag-history-card { background:rgba(192,57,43,0.07); border:1px solid rgba(192,57,43,0.2); border-left:3px solid var(--red); padding:28px; }
+.nag-history-card h3 { font-family:'Cinzel',serif; font-size:16px; color:rgba(255,255,255,0.9); margin-bottom:16px; letter-spacing:1px; }
+.nag-history-card p { font-size:13px; color:rgba(255,255,255,0.58); line-height:1.9; margin-bottom:14px; }
+.nag-stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px; }
+.nag-stat { background:rgba(0,0,0,0.3); padding:14px; text-align:center; }
+.nag-stat .ns-num { font-family:'Cinzel',serif; font-size:26px; color:var(--red); margin-bottom:4px; }
+.nag-stat .ns-label { font-size:10px; letter-spacing:1px; color:rgba(255,255,255,0.35); }
+.seido-box { background:rgba(212,160,23,0.06); border:1px solid rgba(212,160,23,0.18); border-left:3px solid var(--gold); padding:28px; }
+.seido-box h3 { font-family:'Cinzel',serif; font-size:16px; color:var(--gold); margin-bottom:14px; }
+.seido-box p { font-size:13px; color:rgba(255,255,255,0.58); line-height:1.9; margin-bottom:12px; }
+.seido-details { list-style:none; margin-top:16px; }
+.seido-details li { display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.05); line-height:1.6; }
+.seido-details li:last-child { border-bottom:none; }
+.seido-details li::before { content:'✦'; color:var(--gold); flex-shrink:0; font-size:9px; margin-top:2px; }
+.nagasaki-quote { background:rgba(0,0,0,0.4); border:1px solid rgba(192,57,43,0.15); padding:20px 24px; margin-top:20px; }
+.nagasaki-quote p { font-size:14px; font-style:italic; color:rgba(255,255,255,0.65); line-height:1.8; }
+.nagasaki-quote span { font-size:11px; color:rgba(255,255,255,0.3); display:block; margin-top:8px; }
+ 
+/* RUTA JAPÓN-COREA */
+.ruta-sec { background:#07070f; border-top:1px solid rgba(29,120,116,0.2); }
+.ruta-sec .ey { color:rgba(29,120,116,0.9); }
+.ruta-etapas { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2px; background:rgba(255,255,255,0.04); margin-top:36px; }
+.etapa { background:#0D0D1A; padding:24px; position:relative; }
+.etapa-num { font-family:'Cinzel',serif; font-size:42px; font-weight:700; color:rgba(255,255,255,0.04); line-height:1; margin-bottom:6px; }
+.etapa-icon { font-size:24px; margin-bottom:10px; }
+.etapa h3 { font-family:'Cinzel',serif; font-size:13px; color:var(--gold); letter-spacing:1px; margin-bottom:8px; }
+.etapa-fecha { font-size:10px; letter-spacing:2px; color:rgba(255,255,255,0.3); font-family:'Cinzel',serif; margin-bottom:10px; }
+.etapa p { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.75; }
+.etapa-accent { border-top:2px solid var(--teal); }
+.etapa-accent-red { border-top:2px solid var(--red); }
+.etapa-accent-gold { border-top:2px solid var(--gold); }
+.ferry-badge { display:inline-block; background:rgba(100,100,200,0.15); color:#a0b0f5; border:1px solid rgba(100,100,200,0.25); font-size:9px; letter-spacing:2px; padding:3px 9px; font-family:'Cinzel',serif; margin-top:8px; }
  
 /* COREA INFO */
 .corea-sec { background:var(--cream); }
@@ -223,6 +261,8 @@ section { padding:80px 20px; }
 .price-card { background:var(--white); border:1px solid var(--gray); border-top:4px solid var(--gold); padding:44px; margin-top:40px; text-align:center; }
 .price-label { font-family:'Cinzel',serif; font-size:10px; letter-spacing:5px; color:#aaa; margin-bottom:10px; }
 .price-big { font-family:'Cinzel',serif; font-size:76px; font-weight:700; color:var(--ink); line-height:1; }
+.price-plus { font-family:'Cinzel',serif; font-size:22px; color:var(--red); margin-top:6px; margin-bottom:4px; }
+.price-flight-note { background:rgba(192,57,43,0.06); border:1px solid rgba(192,57,43,0.15); border-left:3px solid var(--red); padding:12px 18px; margin:12px 0 8px; text-align:left; font-size:13px; color:#666; line-height:1.7; }
 .price-note { font-size:13px; color:#bbb; margin-bottom:8px; }
 .price-pending { font-size:12px; color:var(--red); margin-bottom:28px; font-style:italic; }
 .includes-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; text-align:left; margin-bottom:28px; }
@@ -300,8 +340,9 @@ footer a:hover { color:var(--gold); }
   </a>
   <ul class="nav-links">
     <li><a href="#madrid">Papa en España</a></li>
-    <li><a href="#jmj">JMJ Seúl 2027</a></li>
-    <li><a href="#corea">Destino</a></li>
+    <li><a href="#jmj">Itinerario</a></li>
+    <li><a href="#nagasaki">Nagasaki</a></li>
+    <li><a href="#corea">Seúl</a></li>
     <li><a href="#precio">Precio</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -327,7 +368,7 @@ footer a:hover { color:var(--gold); }
     <div class="hero-badge">CLUB DARDO &nbsp;·&nbsp; PEREGRINACIÓN 2027</div>
     <span class="hero-hangul">환영합니다 &nbsp;·&nbsp; ようこそ &nbsp;·&nbsp; BIENVENIDOS</span>
     <h1 class="hero-title">Hasta los confines<br>de la <span class="g">tierra</span></h1>
-    <p class="hero-sub">JMJ Seúl 2027 &nbsp;·&nbsp; Japón &amp; Corea del Sur</p>
+    <p class="hero-sub">JMJ Seúl 2027 &nbsp;·&nbsp; Nagasaki &amp; Corea del Sur</p>
     <div class="hero-lema">
       «¡Tened valor! Yo he vencido al mundo» &mdash; Jn 16,33
     </div>
@@ -339,13 +380,13 @@ footer a:hover { color:var(--gold); }
       </div>
       <div class="ep">
         <div class="ep-label">GRAN PEREGRINACIÓN</div>
-        <div class="ep-date">JUL–AGO 2027</div>
-        <div class="ep-desc">Japón &amp; JMJ Seúl<br>3–8 agosto con el Papa</div>
+        <div class="ep-date">31 JUL–9 AGO 2027</div>
+        <div class="ep-desc">Nagasaki · Fukuoka · JMJ Seúl<br>3–8 agosto con el Papa</div>
       </div>
       <div class="ep">
         <div class="ep-label">PRECIO DESDE</div>
-        <div class="ep-date">1.850€</div>
-        <div class="ep-desc">Becas disponibles<br>vía convivencias y campos</div>
+        <div class="ep-date">595€</div>
+        <div class="ep-desc">+ vuelo ~800–1.100€<br>Becas disponibles</div>
       </div>
     </div>
   </div>
@@ -434,83 +475,204 @@ footer a:hover { color:var(--gold); }
   <div class="divider"><div class="divider-line"></div><div class="divider-sym">✦</div><div class="divider-sym">🌸</div><div class="divider-sym">✦</div><div class="divider-line"></div></div>
 </div>
  
-<!-- JMJ 2027 -->
+<!-- JMJ 2027 - ITINERARIO -->
 <section class="jmj-sec" id="jmj" style="padding-top:80px;">
   <div class="container">
-    <p class="ey">Julio–Agosto 2027 · Japón &amp; Corea del Sur</p>
-    <h2 class="st" style="color:var(--white);">La gran peregrinación:<br><span class="g">6 días en Japón · JMJ en Seúl</span></h2>
+    <p class="ey">31 Julio – 9 Agosto 2027 · Nagasaki &amp; Corea del Sur</p>
+    <h2 class="st" style="color:var(--white);">La gran peregrinación:<br><span class="g">Nagasaki · Fukuoka · JMJ Seúl</span></h2>
     <p class="sb">
-      El Club Dardo propone una ruta que va mucho más allá de los actos centrales: primero <strong style="color:rgba(255,255,255,0.8)">seis noches en Japón</strong> —integrados en una red internacional de voluntariado que nos permite reducir costes significativamente y vivir una inmersión real— y después nos trasladamos a <strong style="color:rgba(255,255,255,0.8)">Seúl para la JMJ</strong> junto al Papa.
+      Un viaje que recorre la historia cristiana de Oriente. Primero <strong style="color:rgba(255,255,255,0.8)">Nagasaki</strong>, la ciudad más católica de Japón y tierra de mártires, donde nos alojaremos en el <strong style="color:rgba(255,255,255,0.8)">Colegio Seido</strong>. Luego cruzamos a Corea en ferry desde Fukuoka para vivir <strong style="color:rgba(255,255,255,0.8)">la JMJ en Seúl junto al Papa</strong>.
     </p>
  
     <div class="route-strip">
-      <div class="rn"><div class="rn-flag">🇪🇸</div><div class="rn-label">Salida</div><div class="rn-days">Madrid · 28 Jul</div></div>
+      <div class="rn"><div class="rn-flag">🇪🇸</div><div class="rn-label">Salida</div><div class="rn-days">Madrid · 31 Jul</div></div>
       <div class="ra">→</div>
-      <div class="rn"><div class="rn-flag">🇯🇵</div><div class="rn-label">Japón</div><div class="rn-days">6 noches · Voluntariado</div></div>
+      <div class="rn"><div class="rn-flag">✈️</div><div class="rn-label">Viaje</div><div class="rn-days">31 Jul – 1 Ago</div></div>
       <div class="ra">→</div>
-      <div class="rn"><div class="rn-flag">🇰🇷</div><div class="rn-label">JMJ Seúl</div><div class="rn-days">3–8 Agosto 2027</div></div>
+      <div class="rn"><div class="rn-flag">🇯🇵</div><div class="rn-label">Nagasaki</div><div class="rn-days">1–4 Agosto</div></div>
       <div class="ra">→</div>
-      <div class="rn"><div class="rn-flag">🇪🇸</div><div class="rn-label">Regreso</div><div class="rn-days">Madrid · ~10 Ago</div></div>
+      <div class="rn"><div class="rn-flag">🚄⛴️</div><div class="rn-label">Shinkansen · Ferry</div><div class="rn-days">4 Ago · de paso</div></div>
+      <div class="ra">→</div>
+      <div class="rn"><div class="rn-flag">🇰🇷</div><div class="rn-label">JMJ Seúl</div><div class="rn-days">4 noche – 8 Agosto</div></div>
+      <div class="ra">→</div>
+      <div class="rn"><div class="rn-flag">🇪🇸</div><div class="rn-label">Regreso</div><div class="rn-days">9 Agosto</div></div>
     </div>
  
     <div class="jmj-grid">
       <div>
         <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--gold);margin-bottom:20px;">Itinerario día a día</h3>
         <table class="itin-table">
-          <tr><td>28 Jul</td><td>Vuelo Madrid → Tokio (vía Doha / Helsinki) <span class="tag tag-jp">JAPÓN</span></td></tr>
-          <tr><td>29–30 Jul</td><td>Tokio: llegada, acogida en red voluntariado, Shibuya, Asakusa <span class="tag tag-jp">JAPÓN</span></td></tr>
-          <tr><td>31 Jul–1 Ago</td><td>Proyecto voluntariado con comunidad local (según sede asignada) <span class="tag tag-jp">JAPÓN</span></td></tr>
-          <tr><td>2 Ago</td><td>Día libre Japón: Kioto o Nara · Vuelo Tokio → Seúl por la tarde <span class="tag tag-kr">COREA</span></td></tr>
-          <tr><td>3 Ago</td><td>Misa de apertura JMJ con el Papa León XIV <span class="tag tag-jmj">JMJ</span></td></tr>
-          <tr><td>4–5 Ago</td><td>Catequesis en español · Festival juvenil · Vía Crucis <span class="tag tag-jmj">JMJ</span></td></tr>
-          <tr><td>6 Ago</td><td>Gran Vigilia nocturna con el Papa <span class="tag tag-jmj">JMJ</span></td></tr>
-          <tr><td>7 Ago</td><td>Misa de clausura y envío papal <span class="tag tag-jmj">JMJ</span></td></tr>
-          <tr><td>8–9 Ago</td><td>Día libre Seúl: Gyeongbokgung, Namsan, K-food <span class="tag tag-kr">COREA</span></td></tr>
-          <tr><td>10 Ago</td><td>Vuelo regreso Seúl → Madrid</td></tr>
+          <tr><td>31 Jul</td><td>Salida desde Madrid · Vuelo hacia Japón (vía escala) <span class="tag tag-jp">VIAJE</span></td></tr>
+          <tr><td>1 Ago</td><td>Llegada a Nagasaki · Acogida en el <strong style="color:rgba(255,255,255,0.8)">Colegio Seido</strong> · Descanso <span class="tag tag-nag">NAGASAKI</span></td></tr>
+          <tr><td>2 Ago</td><td>Catedral de Urakami · Parque de la Paz · Iglesia de Ōura · Misa con comunidad local <span class="tag tag-nag">NAGASAKI</span></td></tr>
+          <tr><td>3 Ago</td><td>Santuario de los 26 Mártires · Barrio de Dejima · Tarde libre · Tertulia nocturna en el Seido <span class="tag tag-nag">NAGASAKI</span></td></tr>
+          <tr><td>4 Ago</td><td>Mañana en Nagasaki · Shinkansen → Fukuoka (1h) · Ferry Fukuoka → Busan · Llegada a Seúl por la noche <span class="tag tag-ferry">FERRY</span><span class="tag tag-kr">COREA</span></td></tr>
+          <tr><td>5–8 Ago</td><td>JMJ Seúl con el Papa León XIV · Catequesis · Vía Crucis · Vigilia · Misa de clausura <span class="tag tag-jmj">JMJ</span></td></tr>
+          <tr><td>9 Ago</td><td>Vuelo regreso Seúl → Madrid · Llegada a España</td></tr>
         </table>
         <div class="vol-box">
-          <h4>🌿 Red Internacional de Voluntariado · Japón</h4>
+          <h4>🏫 En Nagasaki: visitas, misa y tertulias</h4>
           <p>
-            El Club Dardo participa en una <strong>red internacional de acogida solidaria</strong> con presencia en varias ciudades japonesas. 
-            Los peregrinos colaboran unas horas al día en proyectos comunitarios —educación, apoyo a personas mayores, sostenibilidad— a cambio de alojamiento y manutención. 
-            Esta alianza nos permite <strong>reducir considerablemente los costes del tramo japonés</strong> y vivir una experiencia de servicio que encarna el espíritu más genuino de la JMJ: salir al encuentro del otro.
+            La estancia en el <strong>Colegio Seido</strong> no es solo alojamiento: es el núcleo de nuestra experiencia japonesa. Durante los días en Nagasaki visitaremos los lugares de memoria cristiana de la ciudad, celebraremos misa con la comunidad local y tendremos <strong>tertulias nocturnas</strong> en el propio colegio —encuentros para reflexionar sobre lo vivido, la historia de los mártires, la fe en Japón y el sentido de lo que nos espera en Seúl. Un espacio de fraternidad real antes de la gran cita.
           </p>
         </div>
       </div>
  
       <div>
-        <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--gold);margin-bottom:20px;">Programa JMJ oficial</h3>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <p class="tl-date">LUNES 3 AGO 2027</p>
-            <h4 class="tl-title">Misa de apertura</h4>
-            <p class="tl-body">El Papa León XIV abre la JMJ. Primera vez que la JMJ se celebra en una nación dividida y en un país no mayoritariamente cristiano.</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot" style="border-color:var(--gold)"></div>
-            <p class="tl-date">4–5 AGO 2027</p>
-            <h4 class="tl-title">Catequesis · Vía Crucis · Festival</h4>
-            <p class="tl-body">Catequesis en español con obispos. Festival de músicas del mundo. Vía Crucis multitudinario por Seúl.</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot" style="border-color:var(--teal)"></div>
-            <p class="tl-date">JUEVES 6 AGO 2027</p>
-            <h4 class="tl-title">Gran Vigilia nocturna</h4>
-            <p class="tl-body">Millones de jóvenes bajo el cielo coreano junto al Papa. El momento más emotivo de cada JMJ.</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot" style="border-color:var(--gold)"></div>
-            <p class="tl-date">VIERNES 7 AGO 2027</p>
-            <h4 class="tl-title">Misa de clausura y envío</h4>
-            <p class="tl-body">El Papa nos envía al mundo. Anuncio de la sede de la próxima JMJ. La segunda JMJ en Asia, 32 años después de Manila 1995.</p>
-          </div>
+        <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--gold);margin-bottom:20px;">¿Qué llevar? · El equipaje justo</h3>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:24px;margin-bottom:16px;">
+          <p style="font-size:11px;letter-spacing:2px;color:rgba(212,160,23,0.6);font-family:'Cinzel',serif;margin-bottom:12px;">LA REGLA DE ORO</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.85;">Solo <strong style="color:rgba(255,255,255,0.85)">equipaje de cabina</strong>. Nada que facturar. En un viaje con vuelo + tren + ferry + tren + varios alojamientos, la maleta grande es el enemigo. Ligero y libre.</p>
         </div>
-        <div class="lema-box">
+ 
+        <div style="background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.18);border-left:3px solid var(--red);padding:22px;margin-bottom:12px;">
+          <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(192,57,43,0.8);margin-bottom:12px;">🎒 LO QUE VAS</p>
+          <ul style="list-style:none;">
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">✦</span><span><strong style="color:rgba(255,255,255,0.8);">Mochila de día</strong> — para excursiones, hidratación, documentación, cargadores</span></li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">✦</span><span><strong style="color:rgba(255,255,255,0.8);">Maleta de cabina</strong> — con todo lo demás; cabe en el avión sin facturar</span></li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">✦</span><span><strong style="color:rgba(255,255,255,0.8);">Saco de dormir ligero</strong> — imprescindible para el alojamiento en el Seido y posiblemente en Seúl</span></li>
+          </ul>
+        </div>
+ 
+        <div style="background:rgba(29,120,116,0.07);border:1px solid rgba(29,120,116,0.2);border-left:3px solid var(--teal);padding:22px;">
+          <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(29,120,116,0.9);margin-bottom:14px;">👕 ROPA · LO MÍNIMO PARA FUNCIONAR</p>
+          <ul style="list-style:none;">
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px;align-items:center;"><span style="color:var(--teal);flex-shrink:0;font-size:10px;">▸</span><span>1 pijama</span></li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px;align-items:center;"><span style="color:var(--teal);flex-shrink:0;font-size:10px;">▸</span><span>2 pantalones (uno más arreglado para las celebraciones)</span></li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px;align-items:center;"><span style="color:var(--teal);flex-shrink:0;font-size:10px;">▸</span><span>8 camisetas (el calor en agosto es intenso; se lava si hace falta)</span></li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px;align-items:center;"><span style="color:var(--teal);flex-shrink:0;font-size:10px;">▸</span><span>1 sudadera o forro polar (noches frescas en el ferry o el avión)</span></li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px;align-items:center;"><span style="color:var(--teal);flex-shrink:0;font-size:10px;">▸</span><span>Chubasquero ligero plegable (agosto puede traer lluvia en Japón)</span></li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.65);padding:5px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--teal);flex-shrink:0;font-size:10px;">▸</span><span>Neceser completo · crema solar · medicación personal · adaptador de enchufe</span></li>
+          </ul>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:12px;font-style:italic;">Lo que no quepa, no viene. Si lo dudas, déjalo.</p>
+        </div>
+ 
+        <div class="lema-box" style="margin-top:16px;">
           <p class="l-ey">LEMA JMJ SEÚL 2027</p>
           <p class="l-text">«¡Tened valor! Yo he vencido al mundo»</p>
           <p class="l-ref">Juan 16,33 &nbsp;·&nbsp; Anunciado por el Cardenal Farrell, 24 sep 2024</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- NAGASAKI HISTORIA -->
+<section class="nagasaki-sec" id="nagasaki" style="padding:80px 20px;">
+  <div class="container">
+    <p class="ey" style="color:rgba(192,57,43,0.8);">Japón · Nuestra Base</p>
+    <h2 class="st" style="color:var(--white);">Nagasaki:<br><span style="color:var(--red);">La ciudad más católica</span> de Japón</h2>
+    <p class="sb" style="color:rgba(255,255,255,0.5);">
+      No elegimos Nagasaki por casualidad. Es la ciudad donde el catolicismo echó raíces más profundas en Japón, donde los mártires regaron con su sangre una Iglesia que sobrevivió siglos en la clandestinidad, y donde la bomba atómica cayó sobre el barrio cristiano. Una ciudad que condensa toda la paradoja del siglo XX.
+    </p>
+ 
+    <div class="nagasaki-grid">
+      <div>
+        <div class="nag-history-card">
+          <h3>⛪ Historia Cristiana de Nagasaki</h3>
+          <p>
+            El catolicismo llegó a Nagasaki de la mano de los jesuitas en el siglo XVI, con San Francisco Javier y sus sucesores. Durante décadas floreció una comunidad cristiana vibrante en Kyushu hasta que las autoridades del shogunato decretaron su persecución total. En <strong style="color:rgba(255,255,255,0.8)">1597</strong>, veintiséis cristianos —japoneses, españoles y mexicanos— fueron crucificados en el monte Tateyama: los célebres <strong style="color:rgba(255,255,255,0.8)">26 Mártires de Nagasaki</strong>, canonizados por Pío IX en 1862.
+          </p>
+          <p>
+            Durante más de <strong style="color:rgba(255,255,255,0.8)">250 años de persecución</strong>, los llamados <em style="color:rgba(255,255,255,0.7)">Kakure Kirishitan</em> —"cristianos ocultos"— mantuvieron su fe en secreto, sin sacerdotes ni Biblia, transmitiendo oraciones y ritos de generación en generación. Cuando en 1865 un sacerdote francés abrió la Iglesia de Ōura, un grupo de aldeanos de Urakami se acercó y confesó: <em style="color:rgba(255,255,255,0.7)">"Nuestros corazones son iguales al vuestro"</em>. Fue reconocido como uno de los mayores milagros de la historia de la Iglesia.
+          </p>
+          <p>
+            Hoy Nagasaki tiene una de las mayores proporciones de católicos de Japón —en torno al <strong style="color:rgba(255,255,255,0.8)">5% de su población</strong>, frente al 0,5% nacional— con decenas de iglesias históricas y una fe que se palpa en cada rincón.
+          </p>
+          <div class="nag-stat-grid">
+            <div class="nag-stat"><div class="ns-num">1597</div><div class="ns-label">26 Mártires crucificados</div></div>
+            <div class="nag-stat"><div class="ns-num">250</div><div class="ns-label">Años de fe en clandestinidad</div></div>
+            <div class="nag-stat"><div class="ns-num">1865</div><div class="ns-label">Descubrimiento de los Kakure Kirishitan</div></div>
+            <div class="nag-stat"><div class="ns-num">5%</div><div class="ns-label">Católicos en Nagasaki (10× la media)</div></div>
+          </div>
+        </div>
+ 
+        <div class="nag-history-card" style="margin-top:16px; border-left-color:rgba(255,200,50,0.5); background:rgba(80,50,0,0.15);">
+          <h3>☢ La Bomba Atómica · 9 de Agosto de 1945</h3>
+          <p>
+            El <strong style="color:rgba(255,255,255,0.8)">9 de agosto de 1945</strong> —exactamente 82 años antes de nuestra misa de clausura— una bomba atómica destruyó Nagasaki. El objetivo inicial era otro punto de la ciudad, pero las nubes desviaron la trayectoria y la explosión se centró sobre el barrio de <strong style="color:rgba(255,255,255,0.8)">Urakami</strong>: precisamente el corazón del catolicismo japonés.
+          </p>
+          <p>
+            La Catedral de Urakami —la mayor iglesia de Asia en aquel momento— quedó destruida. Murieron en ese instante entre <strong style="color:rgba(255,255,255,0.8)">8.500 y 13.000 católicos</strong>. El obispo Taguchi, que sobrevivió, escribió más tarde: <em style="color:rgba(255,255,255,0.65)">"Nagasaki fue elegida por Dios para ser mártir entre las ciudades del mundo"</em>. La reconstruida Catedral de Urakami, consagrada en 1959, es hoy uno de los lugares de peregrinación más solemnes de Asia.
+          </p>
+          <div class="nagasaki-quote">
+            <p>«Ofrezco toda la muerte y el sufrimiento de los católicos de Urakami como un sacrificio por la paz del mundo y la conversión de los no creyentes.»</p>
+            <span>— Dr. Takashi Nagai, superviviente de la bomba y médico católico (†1951)</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div>
+        <div class="seido-box">
+          <h3>🏫 Colegio Seido · Nuestro Alojamiento</h3>
+          <p>
+            El <strong style="color:rgba(255,255,255,0.8)">Colegio Seido de Nagasaki</strong> es nuestra base de operaciones durante los días japoneses. Una instalación con historia propia, enclavada en la ciudad que mejor representa el encuentro entre la fe cristiana y la cultura japonesa.
+          </p>
+          <p>
+            Habitaciones colectivas cómodas, comedor con cocina japonesa, espacios de reunión y oración, y una ubicación que nos permite llegar a pie a los principales lugares de memoria y fe de Nagasaki. El ambiente es sencillo, fraterno y perfecto para el espíritu de peregrinación.
+          </p>
+          <ul class="seido-details">
+            <li>Alojamiento en habitaciones colectivas con literas</li>
+            <li>Pensión completa incluida durante la estancia en Nagasaki</li>
+            <li>Espacio de oración y celebración litúrgica</li>
+            <li>Accesible a pie a la Catedral de Urakami y el Santuario de los Mártires</li>
+            <li>Acompañamiento espiritual durante toda la estancia japonesa</li>
+            <li>A 1 hora en Shinkansen de Fukuoka (puerto de salida hacia Corea)</li>
+          </ul>
+        </div>
+ 
+        <div style="margin-top:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); padding:24px;">
+          <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:rgba(212,160,23,0.6);margin-bottom:14px;">QUÉ VISITAREMOS EN NAGASAKI</p>
+          <ul style="list-style:none;">
+            <li style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px;color:rgba(255,255,255,0.6);display:flex;gap:10px;line-height:1.6;"><span style="color:var(--red);flex-shrink:0;">⛪</span><span><strong style="color:rgba(255,255,255,0.8);">Catedral de Urakami</strong> — Reconstruida tras la bomba. Centro espiritual del catolicismo nagasakiense</span></li>
+            <li style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px;color:rgba(255,255,255,0.6);display:flex;gap:10px;line-height:1.6;"><span style="color:var(--red);flex-shrink:0;">✝</span><span><strong style="color:rgba(255,255,255,0.8);">Santuario de los 26 Mártires</strong> — Lugar del martirio en 1597, monumento y basílica</span></li>
+            <li style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px;color:rgba(255,255,255,0.6);display:flex;gap:10px;line-height:1.6;"><span style="color:rgba(255,200,50,0.7);flex-shrink:0;">☮</span><span><strong style="color:rgba(255,255,255,0.8);">Parque de la Paz y Epicentro</strong> — Memorial de la bomba atómica. Oración por la paz</span></li>
+            <li style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px;color:rgba(255,255,255,0.6);display:flex;gap:10px;line-height:1.6;"><span style="color:var(--gold);flex-shrink:0;">⛩</span><span><strong style="color:rgba(255,255,255,0.8);">Iglesia de Ōura</strong> — Donde en 1865 emergieron los Kakure Kirishitan. Patrimonio UNESCO</span></li>
+            <li style="padding:9px 0;font-size:13px;color:rgba(255,255,255,0.6);display:flex;gap:10px;line-height:1.6;"><span style="color:var(--teal);flex-shrink:0;">🌊</span><span><strong style="color:rgba(255,255,255,0.8);">Bahía de Nagasaki y Dejima</strong> — La isla artificial que fue puerta a Occidente durante el aislamiento</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- RUTA JAPÓN → COREA -->
+<section class="ruta-sec" id="ruta" style="padding:80px 20px;">
+  <div class="container">
+    <p class="ey" style="color:rgba(29,120,116,0.9);">4–5 Agosto · La Gran Transición</p>
+    <h2 class="st" style="color:var(--white);">Shinkansen + Ferry:<br><span style="color:var(--teal);">De Japón a Corea por tierra y mar</span></h2>
+    <p class="sb" style="color:rgba(255,255,255,0.5);">
+      Una de las experiencias más singulares del viaje: cruzar el Mar de Japón en ferry, uniendo dos mundos. Primero el tren bala japonés, luego el barco. Una travesía que los primeros misioneros hacían con meses de navegación y nosotros hacemos en un día.
+    </p>
+    <div class="ruta-etapas">
+      <div class="etapa etapa-accent-red">
+        <div class="etapa-num">01</div>
+        <div class="etapa-icon">🚄</div>
+        <div class="etapa-fecha">4 AGO · MAÑANA</div>
+        <h3>Shinkansen a Fukuoka</h3>
+        <p>El tren bala cubre los 120 km entre Nagasaki y Fukuoka en poco más de una hora. Paisajes costeros del sur de Kyushu. Fukuoka es solo escala: llegamos, embarcamos.</p>
+      </div>
+      <div class="etapa etapa-accent" style="border-top-color:#a0b0f5;">
+        <div class="etapa-num">02</div>
+        <div class="etapa-icon">⛴️</div>
+        <div class="etapa-fecha">4 AGO · TARDE</div>
+        <h3>Ferry Fukuoka → Busan</h3>
+        <p>Cruzamos el Estrecho de Corea en ferry. Unas 3 horas de travesía. Una experiencia única que marca el cambio de mundo: de Japón a Corea por el mar.</p>
+        <span class="ferry-badge">CAMELIA LINE · ~3h</span>
+      </div>
+      <div class="etapa etapa-accent" style="border-top-color:var(--teal);">
+        <div class="etapa-num">03</div>
+        <div class="etapa-icon">🚅</div>
+        <div class="etapa-fecha">4 AGO · NOCHE</div>
+        <h3>KTX Busan → Seúl</h3>
+        <p>El tren de alta velocidad coreano KTX nos lleva a Seúl en 2h 30min. Llegamos por la noche. Al día siguiente, comienza la JMJ.</p>
+      </div>
+      <div class="etapa etapa-accent-gold">
+        <div class="etapa-num">04</div>
+        <div class="etapa-icon">🇰🇷</div>
+        <div class="etapa-fecha">5–8 AGO</div>
+        <h3>JMJ · Seúl</h3>
+        <p>Cuatro días con el Papa y millones de jóvenes del mundo. Catequesis, Vía Crucis, Vigilia, Misa de clausura. El corazón del viaje.</p>
       </div>
     </div>
   </div>
@@ -596,16 +758,22 @@ footer a:hover { color:var(--gold); }
     </p>
  
     <div class="price-card">
-      <div class="price-label">PRECIO ESTÁNDAR POR PERSONA · TODO INCLUIDO</div>
-      <div class="price-big">1.850€</div>
+      <div class="price-label">PRECIO ESTÁNDAR POR PERSONA · ESTANCIA + ORGANIZACIÓN</div>
+      <div class="price-big">595€</div>
+      <div class="price-plus">+ Vuelo</div>
+      <div class="price-flight-note">
+        ✈️ <strong>El vuelo va aparte</strong>, ajustado a las mejores tarifas del momento. Estimación orientativa: <strong>800€ – 1.100€</strong> aprox. por persona (Madrid ↔ Nagasaki / Seúl → Madrid), según disponibilidad y antelación. Lo gestionamos en grupo para conseguir el mejor precio posible.
+      </div>
       <div class="price-note">pago fraccionado disponible</div>
       <div class="price-pending">Precio orientativo — sujeto a posibles ajustes según número de participantes y cotización de vuelos</div>
       <div class="includes-grid">
-        <div class="inc">Vuelo ida y vuelta Madrid–Tokio–Seúl–Madrid</div>
-        <div class="inc">6 noches Japón (red voluntariado: aloj. + comidas)</div>
-        <div class="inc">3–4 noches Seúl (alojamiento JMJ)</div>
+        <div class="inc">Alojamiento Nagasaki · Colegio Seido (3 noches)</div>
+        <div class="inc">Pensión completa durante la estancia en Nagasaki</div>
+        <div class="inc">Tren bala Shinkansen Nagasaki → Fukuoka</div>
+        <div class="inc">Ferry Fukuoka → Busan (Corea)</div>
+        <div class="inc">Tren KTX Busan → Seúl</div>
+        <div class="inc">Alojamiento JMJ Seúl (3–4 noches)</div>
         <div class="inc">Inscripción oficial JMJ gestionada</div>
-        <div class="inc">Traslados aeropuerto en ambos países</div>
         <div class="inc">Seguro de viaje completo</div>
         <div class="inc">Guía del Club Dardo todo el recorrido</div>
         <div class="inc">SIM card con datos para el viaje</div>
@@ -614,29 +782,41 @@ footer a:hover { color:var(--gold); }
       </div>
  
       <div class="becas-box">
-        <h4>Becas · Acceso para todos</h4>
+        <h4>Becas · Cómo sufragar el viaje</h4>
         <p>
-          El Club Dardo dispone de un fondo de becas parciales para quienes no puedan asumir el precio íntegro. 
-          Estas ayudas no se piden: se <strong>ganan participando</strong> activamente en las actividades del club a lo largo de este tiempo previo. 
-          Cuanto más te impliques, más posibilidades de acceder a una beca. Consúltalo con el coordinador.
+          En el Club Dardo creemos que ningún joven debe quedarse sin ir por dinero. Por eso hemos puesto en marcha <strong>iniciativas concretas</strong> para ayudar a sufragar el coste del viaje, especialmente el vuelo. Estas ayudas no se piden: se ganan participando. Y gracias a ellas, el precio final puede reducirse significativamente.
         </p>
+        <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.2);padding:16px;">
+            <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:8px;">📅 INICIATIVA 1</p>
+            <p style="font-size:13px;color:#555;font-weight:700;margin-bottom:6px;">Calendario JMJ 2027</p>
+            <p style="font-size:12px;color:#777;line-height:1.75;">Diseñamos y vendemos un <strong>calendario solidario de la JMJ 2027</strong>. Cada unidad vendida contribuye directamente al fondo de viaje. Una forma bonita de implicar a familias, parroquias y amigos en el proyecto.</p>
+          </div>
+          <div style="background:rgba(29,120,116,0.07);border:1px solid rgba(29,120,116,0.18);padding:16px;">
+            <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:8px;">💳 INICIATIVA 2</p>
+            <p style="font-size:13px;color:#555;font-weight:700;margin-bottom:6px;">Tarjetas de Visita Fila Zero</p>
+            <p style="font-size:12px;color:#777;line-height:1.75;">Participamos en el programa <strong>Fila Zero</strong>, que permite obtener subvenciones para el viaje a través de tarjetas de visita solidarias. Una herramienta que puede rebajar notablemente el coste del vuelo para quienes más lo necesiten.</p>
+          </div>
+        </div>
+        <p style="font-size:12px;color:#888;margin-top:14px;line-height:1.7;">Gracias a estas iniciativas, el coste real del vuelo para muchos participantes puede quedar <strong>muy por debajo</strong> de la estimación inicial de 800–1.100€. Consúltalo con el coordinador.</p>
         <div class="beca-tags">
+          <span class="beca-tag">Calendario JMJ 2027</span>
+          <span class="beca-tag">Tarjetas Fila Zero</span>
           <span class="beca-tag">Convivencias de curso</span>
           <span class="beca-tag">Campos de trabajo</span>
-          <span class="beca-tag">Voluntariado local</span>
           <span class="beca-tag">Beca solidaria</span>
         </div>
       </div>
  
       <div class="cuotas">
-        <div class="cuota"><div class="c-label">RESERVA · ENE 2027</div><div class="c-date">Enero 2027</div><div class="c-amount">300€</div></div>
-        <div class="cuota"><div class="c-label">50% RESTANTE</div><div class="c-date">Marzo 2027</div><div class="c-amount">775€</div></div>
-        <div class="cuota"><div class="c-label">LIQUIDACIÓN</div><div class="c-date">Mayo 2027</div><div class="c-amount">775€</div></div>
+        <div class="cuota"><div class="c-label">RESERVA · ENE 2027</div><div class="c-date">Enero 2027</div><div class="c-amount">200€</div></div>
+        <div class="cuota"><div class="c-label">50% RESTANTE</div><div class="c-date">Marzo 2027</div><div class="c-amount">197€</div></div>
+        <div class="cuota"><div class="c-label">LIQUIDACIÓN</div><div class="c-date">Mayo 2027</div><div class="c-amount">198€</div></div>
       </div>
     </div>
  
     <div style="background:rgba(192,57,43,0.05);border:1px solid rgba(192,57,43,0.12);padding:18px 22px;margin-top:16px;">
-      <p style="font-size:13px;color:#777;line-height:1.8;"><strong style="color:var(--red)">Nota:</strong> El precio es orientativo y se confirmará al contratar el vuelo grupal (cuantas más personas, más barato). Los 6 días en Japón con la red de voluntariado reducen costes reales sin coste adicional. El viaje a Madrid (junio 2026) es independiente y se gestiona por separado.</p>
+      <p style="font-size:13px;color:#777;line-height:1.8;"><strong style="color:var(--red)">Nota:</strong> Los 595€ cubren toda la organización, estancias y transportes terrestres/marítimos. El vuelo se contrata por separado en grupo para maximizar el ahorro —cuantas más personas, mejor precio. Precio total estimado por persona (todo incluido con vuelo): <strong>1.400€ – 1.700€</strong> aproximadamente. El viaje a Madrid (junio 2026) es independiente y se gestiona por separado.</p>
     </div>
   </div>
 </section>
@@ -666,17 +846,17 @@ footer a:hover { color:var(--gold); }
       <div class="org-step">
         <div class="org-num">04</div>
         <h3>Reserva oficial (Oct 2026)</h3>
-        <p>Pago de 300€ que confirma tu plaza. Iniciamos trámites con la agencia de viajes colaboradora.</p>
+        <p>Pago inicial que confirma tu plaza. Iniciamos trámites con la agencia de viajes colaboradora y reservamos vuelos.</p>
       </div>
       <div class="org-step">
         <div class="org-num">05</div>
         <h3>Preparación (2026–2027)</h3>
-        <p>Encuentros mensuales: historia de Japón y Corea, japonés y coreano básico, catequesis JMJ, convivencias.</p>
+        <p>Encuentros mensuales: historia de Japón y Corea, japonés y coreano básico, catequesis JMJ, historia de Nagasaki.</p>
       </div>
       <div class="org-step">
         <div class="org-num">06</div>
-        <h3>¡Nos vamos! (Jul 2027)</h3>
-        <p>Salida en grupo desde Madrid con guía-acompañante del Club Dardo durante todo el recorrido.</p>
+        <h3>¡Nos vamos! (31 Jul 2027)</h3>
+        <p>Salida en grupo desde Madrid con guía-acompañante del Club Dardo durante todo el recorrido hasta Seúl.</p>
       </div>
     </div>
   </div>
@@ -693,12 +873,20 @@ footer a:hover { color:var(--gold); }
         <p>Los ciudadanos españoles y de la UE no necesitan visado para Japón (hasta 90 días) ni para Corea del Sur (hasta 90 días). Basta con el pasaporte en vigor. Comprueba que no caduque antes de febrero de 2028. Nota: España estaba exenta de K-ETA hasta 31/12/2025 — confirmar estado actualizado antes de emitir billetes.</p>
       </details>
       <details class="faq">
-        <summary>¿Cómo funciona exactamente el voluntariado en Japón?</summary>
-        <p>Participamos en una red internacional de acogida solidaria con presencia en varias ciudades japonesas. Los participantes colaboran unas horas al día en actividades comunitarias (talleres, apoyo a personas mayores, cuidado del entorno...) a cambio de alojamiento y comidas. No se requiere experiencia ni conocimiento del japonés, solo buena disposición y respeto a la comunidad.</p>
+        <summary>¿Por qué Nagasaki y no Tokio u otra ciudad?</summary>
+        <p>Nagasaki es la ciudad con mayor concentración de católicos de Japón y un lugar de memoria cristiana único: los 26 Mártires, los Kakure Kirishitan que mantuvieron la fe 250 años en secreto, la bomba atómica que cayó sobre el barrio cristiano de Urakami. Es una etapa de peregrinación en sí misma, no solo un destino turístico. El Colegio Seido nos permite además una acogida cálida y con espíritu comunitario.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Cómo funciona el ferry Fukuoka–Busan?</summary>
+        <p>El ferry Camelia Line cubre el trayecto Fukuoka (Hakata) → Busan en aproximadamente 3 horas. Es un ferri de pasajeros moderno y cómodo, con cafetería, cubierta exterior y zona de descanso. Es una de las rutas marítimas internacionales más utilizadas de Asia. Desde Busan, el tren KTX nos lleva a Seúl en 2h 30min.</p>
+      </details>
+      <details class="faq">
+        <summary>¿El precio de 595€ incluye el vuelo?</summary>
+        <p>No. Los 595€ cubren toda la organización y estancias en tierra: alojamiento en el Colegio Seido de Nagasaki (3 noches con pensión completa), tren bala Shinkansen Nagasaki→Fukuoka, ferry Fukuoka→Busan, tren KTX Busan→Seúl, alojamiento JMJ en Seúl, inscripción JMJ, seguro de viaje, guía y coordinación. El vuelo (Madrid ↔ Japón / Corea → Madrid) se gestiona aparte en grupo: estimación orientativa de 800€ a 1.100€ según tarifas. El precio total estimado con todo incluido se situaría entre 1.400€ y 1.700€ aproximadamente.</p>
       </details>
       <details class="faq">
         <summary>¿El viaje a Madrid (junio 2026) y el de Seúl (2027) son independientes?</summary>
-        <p>Sí, completamente independientes. El fin de semana en Madrid (viernes a domingo, ~100/125€) es una salida puntual. El viaje a Japón y Corea (1.850€) es la peregrinación grande de 2027. Puedes ir a uno, al otro o a los dos. No es requisito ir a Madrid para poder ir a la JMJ.</p>
+        <p>Sí, completamente independientes. El fin de semana en Madrid (viernes a domingo, ~100/125€) es una salida puntual. El viaje a Nagasaki, Fukuoka y Corea es la peregrinación grande de 2027. Puedes ir a uno, al otro o a los dos. No es requisito ir a Madrid para poder ir a la JMJ.</p>
       </details>
       <details class="faq">
         <summary>¿Cómo se consigue una beca del Club Dardo?</summary>
@@ -707,10 +895,6 @@ footer a:hover { color:var(--gold); }
       <details class="faq">
         <summary>¿Quién puede venir? ¿Solo jóvenes?</summary>
         <p>La JMJ oficial está pensada para jóvenes de 16 a 35 años, pero el Club Dardo tiene plazas para acompañantes adultos (catequistas, animadores). Los menores de 18 años necesitan autorización firmada de los padres y viajan integrados en el grupo. Nadie viaja solo.</p>
-      </details>
-      <details class="faq">
-        <summary>¿Qué pasa si el precio sube o baja?</summary>
-        <p>El precio de 1.850€ es orientativo hasta confirmar el vuelo grupal con la agencia. Cuantas más personas se apunten, más posibilidades de reducirlo. Si el precio final difiere, se comunicará antes del pago de la reserva oficial (octubre 2026) y cada participante podrá confirmar o cancelar sin penalización.</p>
       </details>
     </div>
   </div>
@@ -752,7 +936,8 @@ footer a:hover { color:var(--gold); }
 <!-- FOOTER -->
 <footer>
   <div class="f-logo">CLUB DARDO</div>
-  <p>Papa León XIV en España &nbsp;·&nbsp; <a href="#madrid">6–12 junio 2026</a> &nbsp;&nbsp;|&nbsp;&nbsp; JMJ Seúl &nbsp;·&nbsp; <a href="#jmj">3–8 agosto 2027</a></p>
+  <p>Papa León XIV en España &nbsp;·&nbsp; <a href="#madrid">6–12 junio 2026</a> &nbsp;&nbsp;|&nbsp;&nbsp; JMJ Seúl &nbsp;·&nbsp; <a href="#jmj">31 julio – 9 agosto 2027</a></p>
+  <p style="margin-top:4px;">Nagasaki · Colegio Seido &nbsp;·&nbsp; Fukuoka &nbsp;·&nbsp; Ferry &nbsp;·&nbsp; Seúl</p>
   <p style="margin-top:8px;"><a href="mailto:clubdardo@dardo.org">clubdardo@dardo.org</a> &nbsp;·&nbsp; <a href="tel:+34633266994">+34 633 266 994</a></p>
   <p style="margin-top:16px;font-size:11px;opacity:.4;max-width:680px;margin-left:auto;margin-right:auto;">
     Información sujeta a confirmación definitiva. Precios orientativos hasta contratación de vuelos. Web del Club Dardo — no oficial del Vaticano ni de la organización JMJ.<br>
